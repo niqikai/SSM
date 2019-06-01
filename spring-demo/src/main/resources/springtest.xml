@@ -5,7 +5,7 @@
         https://www.springframework.org/schema/beans/spring-beans.xsd"
 >
 
-        <bean  class="com.demo.springtest.SomeBean"/>
+        <bean  class="com.ioc.springtest.SomeBean"/>
 
 
 </beans>

@@ -4,15 +4,15 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- 1. 构造器实例化(无参)，最标准，使用最多    -->
-    <bean id="cat" class="com.demo.createbean.Cat"/>
+    <bean id="cat" class="com.ioc.createbean.Cat"/>
 
     <!-- 2. 静态共产方法   -->
-    <bean id="dog" class="com.demo.createbean.DogFactory"  factory-method="createInstance"/>
+    <bean id="dog" class="com.ioc.createbean.DogFactory" factory-method="createInstance"/>
 
     <!--3. 实例工厂方法    -->
-    <bean id="fishFactory" class="com.demo.createbean.FishFactory"/>
+    <bean id="fishFactory" class="com.ioc.createbean.FishFactory"/>
     <bean id="fish" factory-bean="fishFactory" factory-method="createInstance"/>
 
     <!--4. 实现FactoryBean接口实例化，可以集成框架使用    -->
-    <bean id="farmer" class="com.demo.createbean.FarmerFactory" />
+    <bean id="farmer" class="com.ioc.createbean.FarmerFactory" />
 </beans>
