@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="base" abstract="true">
+        <property name="name" value="tom"/>
+        <property name="age" value="19"/>
+    </bean>
+
+
+    <bean id="one" class="com.di.autowired.inheritance.BeanOne" parent="base">
+        <property name="color" value="red" />
+    </bean>
+
+    <bean id="two" class="com.di.autowired.inheritance.BeanTwo" parent="base">
+        <property name="weight" value="100" />
+    </bean>
+
+
+</beans>
