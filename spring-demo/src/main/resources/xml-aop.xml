@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop
+       https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="employeeDao" class="com.aop.xml.dao.impl.EmployeeDaoImpl" />
+    <bean id="employeeService" class="com.aop.xml.service.impl.EmployeeServiceImpl">
+        <property name="dao" ref="employeeDao" />
+    </bean>
+
+
+
+    <!-- AOP Config  -->
+    <!--1. what 做什么增强 -->
+    <bean id="tx" class="com.aop.xml.tx.TransactionManger"/>
+    <aop:config proxy-target-class="true">
+        <!-- 配置 AOP 切面       -->
+        <aop:aspect ref="tx">
+            <!--2. where 在哪些包中的哪些类中哪些方法做增强-->
+            <aop:pointcut id="txPoint" expression="execution(* com.aop.xml.service.*Service.*(..))"/>
+            <!--3. when 在方法什么时机做增强-->
+            <aop:before method="begin" pointcut-ref="txPoint"/>
+            <aop:after-returning method="commit" pointcut-ref="txPoint"/>
+            <aop:after-throwing method="rollback" pointcut-ref="txPoint" />
+        </aop:aspect>
+    </aop:config>
+
+</beans>
