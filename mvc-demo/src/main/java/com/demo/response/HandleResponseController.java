@@ -55,6 +55,38 @@ public class HandleResponseController {
         return "result";
     }
 
+    // 请求转发; 浏览器地址栏不改变，可以共享请求中的数据
+    // 原理：request.getRequestDispatcher("").forward(request, response);
+    @RequestMapping("/test5")
+    public String test5(Model model) {
+
+        return "forward:/hello.html";
+    }
+
+
+    // URL重定向; 浏览器地址栏不改变，不能共享请求中的数据
+    // 原理： response.sendRedirect("");
+    @RequestMapping("/test6")
+    public String test6(Model model) {
+
+        return "redirect:/hello.html";
+    }
+    /**
+     * 请求转发和URL重定向选择
+     *               请求转发           URL重定向选择
+     * ------------------------------------------------
+     * 地址栏          不会               会
+     * 共享数据         可以              不能？
+     * 表单重复提交     导致               不会
+     *
+     *
+     * 请求资源路径的问题：
+     *     重定向redirect:/hello.html 和 redirect:hello.html
+     *          访问资源的时候带上/，表示绝对路径，从跟路径开始寻找
+     *          访问资源的时候没有/，表示相对路径，从上一级上下文目录开始寻找
+     *      但是Spring可以用Flash传递共享数据
+     *
+     */
 }
 
 
