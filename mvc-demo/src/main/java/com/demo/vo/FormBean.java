@@ -1,4 +1,4 @@
-package com.demo;
+package com.demo.vo;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -12,4 +12,6 @@ import java.util.List;
 @ToString
 public class FormBean {
     private List<Long> ids = new ArrayList<>();
+    private String name;
+    private Integer age;
 }

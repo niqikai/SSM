@@ -13,6 +13,7 @@
 <body>
 
     ${msg}
+    ${fb}
 
 </body>
 </html>
