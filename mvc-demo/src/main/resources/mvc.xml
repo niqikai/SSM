@@ -29,4 +29,12 @@
         <property name="suffix" value=".jsp" />
     </bean>
 
+    <!-- 拦截器   -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/login"/>
+            <bean class="com.demo.interceptor.CheckLoginInterceptor" />
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>
