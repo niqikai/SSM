@@ -30,11 +30,20 @@
     </bean>
 
     <!-- 拦截器   -->
-    <mvc:interceptors>
-        <mvc:interceptor>
-            <mvc:mapping path="/**"/>
-            <mvc:exclude-mapping path="/login"/>
-            <bean class="com.demo.interceptor.CheckLoginInterceptor" />
-        </mvc:interceptor>
-    </mvc:interceptors>
+<!--    <mvc:interceptors>-->
+<!--        <mvc:interceptor>-->
+<!--            <mvc:mapping path="/**"/>-->
+<!--            <mvc:exclude-mapping path="/login"/>-->
+<!--            <bean class="com.demo.interceptor.CheckLoginInterceptor" />-->
+<!--        </mvc:interceptor>-->
+<!--    </mvc:interceptors>-->
+
+
+
+    <!--    异常处理器-->
+    <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" >
+<!--        <property name="defaultErrorView" value="/result" />-->
+<!--        <property name="exceptionAttribute" value="ex" />-->
+<!--        <property name="exceptionMapping" value="" />-->
+    </bean>
 </beans>
