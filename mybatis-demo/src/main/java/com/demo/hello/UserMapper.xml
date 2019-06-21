@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.hello.UserMapper">
+    <!--
+        -id:唯一标示符，用来标示一条sql;
+                namespace + id 标示唯一一条SQL语句
+        -parameterType:SQL需要的参数类型，建议不写，mybatis可以自行推断
+        -resultType:结果集封装成的对象
+    -->
+    <select id="get" parameterType="java.lang.Integer" resultType="com.demo.hello.User">
+        select * from mybatis.user where id=#{id}
+    </select>
+
+
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="id"
+        parameterType="com.demo.hello.User"
+    >
+        insert into mybatis.user (name, age) VALUES (#{name}, #{age})
+
+    </insert>
+
+
+
+</mapper>
