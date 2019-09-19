@@ -47,5 +47,7 @@
     <!-- 2 关联映射文件-->
     <mappers>
         <mapper resource="com/demo/hello/UserMapper.xml"/>
+        <mapper resource="com/demo/mapper/UserMapper.xml"/>
+        <mapper resource="com/demo/client/mapper/ClientMapper.xml"/>
     </mappers>
 </configuration>
