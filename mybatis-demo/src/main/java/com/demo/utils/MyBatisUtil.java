@@ -1,6 +1,7 @@
 package com.demo.utils;
 
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
@@ -16,5 +17,9 @@ public class MyBatisUtil {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static SqlSession getFactory() {
+        return factory.openSession();
     }
 }

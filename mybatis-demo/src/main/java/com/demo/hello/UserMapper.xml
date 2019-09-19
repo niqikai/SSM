@@ -3,17 +3,34 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.demo.hello.UserMapper">
+
+    <resultMap id="BaseResultMap" type="User" >
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="age" property="age"/>
+    </resultMap>
+
+
+
+
+
+
+
     <!--
-        -id:唯一标示符，用来标示一条sql;
+        - id:唯一标示符，用来标示一条sql;
                 namespace + id 标示唯一一条SQL语句
-        -parameterType:SQL需要的参数类型，建议不写，mybatis可以自行推断
-        -resultType:结果集封装成的对象
+        - parameterType:SQL需要的参数类型，建议不写，mybatis可以自行推断
+        - resultType:结果集封装成的对象
     -->
     <select id="get" parameterType="java.lang.Integer" resultType="com.demo.hello.User">
         select * from mybatis.user where id=#{id}
     </select>
-
-
+    <select id="listAll" resultType="User">
+        select * from mybatis.user
+    </select>
+    <select id="listAll2" resultMap="BaseResultMap">
+        select * from mybatis.user
+    </select>
 
     <insert id="save" useGeneratedKeys="true" keyProperty="id"
         parameterType="com.demo.hello.User"
@@ -22,6 +39,10 @@
 
     </insert>
 
-
+    <update id="update" parameterType="User">
+        update mybatis.user
+        set name = #{name}
+        where id = #{id}
+    </update>
 
 </mapper>

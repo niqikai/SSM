@@ -4,22 +4,10 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
-<!--    <properties>-->
-<!--        <property name="driver" value="com.mysql.cj.jdbc.Driver"/>-->
-<!--        <property name="url" value="jdbc:mysql://localhost:3306/mybatis"/>-->
-<!--        <property name="username" value="root"/>-->
-<!--        <property name="password" value="root"/>-->
-<!--    </properties>-->
-    <properties resource="db.properties"/>
-
     <settings>
         <setting name="logImpl" value="LOG4J"/>
     </settings>
 
-    <typeAliases>
-<!--        <typeAlias type="com.demo.hello.User" alias="User"/>-->
-        <package name="com.demo.hello"/>
-    </typeAliases>
 
 
     <!-- 1 配置环境  -->
@@ -27,10 +15,10 @@
         <environment id="development">
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
-                <property name="driver" value="${jdbc.driver}"/>
-                <property name="url" value="${jdbc.url}"/>
-                <property name="username" value="${jdbc.username}"/>
-                <property name="password" value="${jdbc.password}"/>
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/mybatis"/>
+                <property name="username" value="root"/>
+                <property name="password" value="root"/>
             </dataSource>
         </environment>
 <!--        <environment id="test">-->
