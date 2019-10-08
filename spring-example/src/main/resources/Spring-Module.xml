@@ -1,0 +1,63 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+    <aop:aspectj-autoproxy />
+
+
+
+    <bean id="helloBean" class="com.demo.common.HelloWorld">
+        <property name="name" value="Spring-Example-Hello" />
+    </bean>
+
+    <bean id="outPutHelper" class="com.demo.output.SpringOutputHelper">
+        <property name="outputGenerator" ref="csvOutputGenerator" />
+    </bean>
+
+    <bean id="csvOutputGenerator" class="com.demo.output.impl.CsvOutputGenerator" />
+    <bean id="jsonOutputGenerator" class="com.demo.output.impl.JsonOutputGenerator" />
+
+    <bean id="customerService" class="com.demo.aop.customer.CustomerService" >
+        <property name="name" value="niqikai" />
+        <property name="url" value="www.niqikai.com" />
+    </bean>
+
+    <bean id="hijackBeforeMethodBean" class="com.demo.aop.HiJackBeforeMethod" />
+
+    <bean id="customerServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean" >
+        <property name="target" ref="customerService" />
+        <property name="interceptorNames">
+            <list>
+                <value>hijackBeforeMethodBean</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="customerPointcut" class="org.springframework.aop.support.NameMatchMethodPointcut" >
+        <property name="mappedName" value="printName" />
+    </bean>
+    <bean id="customerAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor" >
+        <property name="pointcut" ref="customerPointcut" />
+        <property name="advice" ref="hijackBeforeMethodBean" />
+    </bean>
+    <bean id="customerServiceProxy2" class="org.springframework.aop.framework.ProxyFactoryBean" >
+        <property name="target" ref="customerService" />
+        <property name="interceptorNames">
+            <list>
+                <value>customerAdvisor</value>
+            </list>
+        </property>
+    </bean>
+
+
+
+
+    <bean id="customerBo" class="com.demo.customer.bo.impl.CustomerBoImpl" />
+    <bean id="logAspect" class="com.demo.aspect.LoggingAspect" />
+
+
+</beans>
